@@ -1,0 +1,16 @@
+*.class
+
+/bin/
+/bin/ej/
+/bin/ej.blocs/
+
+.classpath
+.project
+.settings/
+
+/Referenced Libraries/
+
+/.metadata/
+/.metadata/*
+
+/.DS_Store/
