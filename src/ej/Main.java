@@ -45,26 +45,27 @@ public class Main {
 				// Il affiche les mots clés associés au Kit pour donner des idées à l'utilisateur.
 				System.out.println("Voici quelques idées de constructions avec le Kit de démarrage.");
 				Set<String> motsCles = kit.getMotsCles();
-				for(String mot : motsCles) {
-					System.out.println(mot);
-				}
+				motsCles.forEach(System.out::println); //utilisatio de la lambda
 					
 			} else if(reponse.equals("2")) {
 				
 				// Il affiche à l'utilisateur le nombre de blocs en fonction du type à contenu par le Kit.
 				System.out.println("Voici le nombre de blocs de chaque type contenu dans le Kit de démarrage : ");
 				Map<Type, Integer> quantiteBloc = new TreeMap<Type, Integer>(); // La TreeMap permet de trier les entrées par ordre alphabétique de la clé.
-				for (IBloc bloc : kit.getBlocs()) {
+				
+				kit.getBlocs().forEach((bloc) -> { //utilisation de la lambda
+					
 					Type type = Type.valueOf(bloc.getClass().getSimpleName().toUpperCase());  // valueOf en Java est utilisée pour convertir une chaîne de caractères (ou d'autres types) en une instance d'un type spécifique
 					int quantite = quantiteBloc.getOrDefault(type, 0) + 1; // Quantite existante + 1.
 																		// getOrDefault en Java est utilisée avec les collections de type Map pour obtenir la valeur associée à une clé spécifique.
 					quantiteBloc.put(type, quantite); //put() permet d'ajouter une paire clé-valeur à la Map. Si la clé existe déjà, la valeur associée est mise à jour avec la nouvelle valeur fournie.
-				}
+				});
 		
 			Set<Type> types = quantiteBloc.keySet(); //nous obtenons l'ensembles des clés de la Map précédente
-			for(Type type : types) {
+			
+			types.forEach((type)-> { //utilisation de la lambda
 				System.out.println(type.toString() + " " + quantiteBloc.get(type));
-			}	
+			});
 			
 			}else {
 				System.out.println("La valeur saisie n'est pas valide - tapez 1 ou 2.");

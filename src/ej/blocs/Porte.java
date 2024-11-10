@@ -1,5 +1,7 @@
 package ej.blocs;
 
+import java.util.function.Predicate;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,6 +31,15 @@ public class Porte extends Bloc {
 		} else {
 			verrouillee = true;
 		}
+	}
+	
+	public void forcerSerrure(Predicate<String> fonction) {
+	    String cleSecrete = "#secret123";
+	    if(this.verrouillee) {
+	        if(fonction.test(cleSecrete)) {
+	            this.verrouillee = false;
+	        }
+	    }
 	}
 
 }
